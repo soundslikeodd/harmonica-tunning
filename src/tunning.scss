@@ -1,0 +1,32 @@
+@import './variables.scss';
+
+.tng-table {
+    display: flex;
+    flex-direction: column;
+
+    .blw {
+        color: blue;
+    }
+
+    .drw {
+        color: red;
+    }
+
+    .tng-row {
+        display: flex;
+        font-size: 14px;
+
+        .legend {
+            padding: 7px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .tng--nt {
+            border: 2px solid black;
+            padding: 5px;
+            min-width: 20px;
+            text-align: center;
+        }
+    }
+}
