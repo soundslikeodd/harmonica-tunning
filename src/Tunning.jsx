@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {labelizeNote} from './tunningGenerator';
 import './tunning.scss';
 
 class Tunning extends Component {
@@ -12,19 +13,19 @@ class Tunning extends Component {
         return (
             <section className="tng-table">
                 <h3>
-                    {tunning} {musicKey}
+                    {tunning} {labelizeNote(musicKey)}
                 </h3>
                 <div className="tng-row">
                     <div className="legend blw">
                         BLOW
                     </div>
-                    {notes.blow.map((n, i) => <div key={`blow-${n}-${i}`} className="tng--nt blw">{n}</div>)}
+                    {notes.blow.map((n, i) => <div key={`blow-${n}-${i}`} className="tng--nt blw">{labelizeNote(n)}</div>)}
                 </div>
                 <div className="tng-row">
                     <div className="legend drw">
                         DRAW
                     </div>
-                    {notes.draw.map((n, i) => <div key={`draw-${n}-${i}`} className="tng--nt drw">{n}</div>)}
+                    {notes.draw.map((n, i) => <div key={`draw-${n}-${i}`} className="tng--nt drw">{labelizeNote(n)}</div>)}
                 </div>
             </section>
         );

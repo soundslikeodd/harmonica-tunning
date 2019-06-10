@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import Select from 'react-select';
 import Tunning from './Tunning';
-import ALL_NOTES, {richterGenerator} from './tunningGenerator';
+import ALL_NOTES, {richterGenerator, labelizeNote} from './tunningGenerator';
 import './app.scss';
 
 class App extends Component {
@@ -29,7 +29,7 @@ class App extends Component {
                             className="root-select"
                             value={selectedKey}
                             onChange={n => this.setState({selectedKey: n})}
-                            options={ALL_NOTES.map(n => ({value: n, label: n}))}
+                            options={ALL_NOTES.map(n => ({value: n, label: labelizeNote(n)}))}
                         />
                         <Tunning
                             musicKey={selectedKey.value}

@@ -18,14 +18,18 @@
 
         .legend {
             padding: 7px;
-            min-width: 20px;
+            min-width: 60px;
             text-align: center;
         }
 
         .tng--nt {
-            border: 2px solid black;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
             padding: 5px;
-            min-width: 20px;
+            min-width: 40px;
+            min-height: 25px;
             text-align: center;
         }
     }
