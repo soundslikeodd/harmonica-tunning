@@ -31,8 +31,18 @@ html {
     flex-direction: column;
     flex: 1 0 auto;
 
-    .root-select {
-      width: 100px;
+    #app--mn-controls {
+        display: flex;
+        flex-direction: row;
+
+        .root-select {
+            width: 100px;
+        }
+
+        .tunning-select {
+            width: 150px;
+            padding-right: 5px;
+        }
     }
   }
 }

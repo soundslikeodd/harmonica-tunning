@@ -12,20 +12,20 @@ class Tunning extends Component {
         } = this.props;
         return (
             <section className="tng-table">
-                <h3>
+                <div className="tng-title">
                     {tunning} {labelizeNote(musicKey)}
-                </h3>
+                </div>
                 <div className="tng-row">
                     <div className="legend blw">
                         BLOW
                     </div>
-                    {notes.blow.map((n, i) => <div key={`blow-${n}-${i}`} className="tng--nt blw">{labelizeNote(n)}</div>)}
+                    {notes.blow.map((n, i) => <div key={`blow-${n}-${i}`} className={`tng--nt tng--nt-tp ${notes.blow.length - 1 === i ? 'tng--nt-lst ' : ''}blw`}>{labelizeNote(n)}</div>)}
                 </div>
                 <div className="tng-row">
                     <div className="legend drw">
                         DRAW
                     </div>
-                    {notes.draw.map((n, i) => <div key={`draw-${n}-${i}`} className="tng--nt drw">{labelizeNote(n)}</div>)}
+                    {notes.draw.map((n, i) => <div key={`draw-${n}-${i}`} className={`tng--nt tng--nt-btm ${notes.draw.length - 1 === i ? 'tng--nt-lst ' : ''}drw`}>{labelizeNote(n)}</div>)}
                 </div>
             </section>
         );

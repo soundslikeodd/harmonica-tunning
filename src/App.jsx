@@ -1,20 +1,22 @@
 import React, {Component, Fragment} from 'react';
 import Select from 'react-select';
 import Tunning from './Tunning';
-import ALL_NOTES, {richterGenerator, labelizeNote} from './tunningGenerator';
+import {ALL_NOTES, ALL_TUNNINGS, TUNNING_TO_GENERATOR, labelizeNote} from './tunningGenerator';
 import './app.scss';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedKey: {value: 'c', label: 'c'}
+            selectedKey: {value: 'c', label: 'c'},
+            selectedTunning: {value: 'richter', label: 'richter'},
         };
     }
 
     render() {
         const {
-            selectedKey
+            selectedKey,
+            selectedTunning,
         } = this.state;
         return (
             <Fragment>
@@ -25,16 +27,24 @@ class App extends Component {
                         </h2>
                     </header>
                     <section id="app--mn">
-                        <Select
-                            className="root-select"
-                            value={selectedKey}
-                            onChange={n => this.setState({selectedKey: n})}
-                            options={ALL_NOTES.map(n => ({value: n, label: labelizeNote(n)}))}
-                        />
+                        <aside id="app--mn-controls">
+                            <Select
+                                className="tunning-select"
+                                value={selectedTunning}
+                                onChange={n => this.setState({selectedTunning: n})}
+                                options={ALL_TUNNINGS.map(n => ({value: n, label: n}))}
+                            />
+                            <Select
+                                className="root-select"
+                                value={selectedKey}
+                                onChange={n => this.setState({selectedKey: n})}
+                                options={ALL_NOTES.map(n => ({value: n, label: labelizeNote(n)}))}
+                            />
+                        </aside>
                         <Tunning
                             musicKey={selectedKey.value}
-                            tunning="richter"
-                            notes={richterGenerator(selectedKey.value)}
+                            tunning={selectedTunning.value}
+                            notes={TUNNING_TO_GENERATOR[selectedTunning.value](selectedKey.value)}
                         />
                     </section>
                 </main>

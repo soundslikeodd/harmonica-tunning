@@ -20,6 +20,8 @@ const SCALE_ACCIDENTAL = {
 
 const circularGet = (root, offset, notes) => notes[(notes.indexOf(root) + offset) % notes.length];
 
+const ALL_TUNNINGS = ['richter', 'country'];
+
 const richterGenerator = (key) => {
     const notes = SCALE_ACCIDENTAL[key];
     return {
@@ -50,8 +52,46 @@ const richterGenerator = (key) => {
     };
 }
 
-export default ALL_NOTES;
+const countryGenerator = (key) => {
+    const notes = SCALE_ACCIDENTAL[key];
+    return {
+        blow: [
+            circularGet(key, 0, notes),
+            circularGet(key, 4, notes),
+            circularGet(key, 7, notes),
+            circularGet(key, 0, notes),
+            circularGet(key, 4, notes),
+            circularGet(key, 7, notes),
+            circularGet(key, 12, notes),
+            circularGet(key, 4, notes),
+            circularGet(key, 7, notes),
+            circularGet(key, 12, notes),
+        ],
+        draw: [
+            circularGet(key, 2, notes),
+            circularGet(key, 7, notes),
+            circularGet(key, 11, notes),
+            circularGet(key, 2, notes),
+            circularGet(key, 6, notes),
+            circularGet(key, 9, notes),
+            circularGet(key, 11, notes),
+            circularGet(key, 2, notes),
+            circularGet(key, 5, notes),
+            circularGet(key, 9, notes),
+        ]
+    };
+}
+const TUNNING_TO_GENERATOR = {
+    richter: richterGenerator,
+    country: countryGenerator,
+};
+
+const noOp = () => {};
+export default noOp;
 export {
-    richterGenerator,
+    ALL_NOTES,
+    ALL_TUNNINGS,
+    TUNNING_TO_GENERATOR,
     labelizeNote
 };
+

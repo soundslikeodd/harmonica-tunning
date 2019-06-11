@@ -4,12 +4,19 @@
     display: flex;
     flex-direction: column;
 
+    .tng-title {
+        font-size: 14px;
+        font-weight: 700;
+        padding: 10px;
+        line-height: 24px;
+    }
+
     .blw {
-        color: blue;
+        color: #002fff;
     }
 
     .drw {
-        color: red;
+        color: #ff7300;
     }
 
     .tng-row {
@@ -23,14 +30,25 @@
         }
 
         .tng--nt {
-            border-top: 1px solid black;
-            border-left: 1px solid black;
-            border-right: 1px solid black;
-            border-bottom: 1px solid black;
             padding: 5px;
+            line-height: 24px;
             min-width: 40px;
-            min-height: 25px;
             text-align: center;
+
+            &.tng--nt-tp {
+                border-top: 1px solid black;
+                border-left: 1px solid black;
+            }
+
+            &.tng--nt-btm {
+                border-top: 1px solid black;
+                border-bottom: 1px solid black;
+                border-left: 1px solid black;
+            }
+
+            &.tng--nt-lst {
+                border-right: 1px solid black;
+            }
         }
     }
 }
