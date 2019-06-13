@@ -1,5 +1,5 @@
 
-const labelizeNote = n => n.length > 1 ? ( n[1] === 'b' || n[1] === '#' ? `${n[0]}${String.fromCharCode(n[1] === 'b' ? 9837 : 9839)}` : n ) : n;
+const labelizeNote = n => n && n.length > 1 ? ( n[1] === 'b' || n[1] === '#' ? `${n[0].toUpperCase()}${String.fromCharCode(n[1] === 'b' ? 9837 : 9839)}` : n.toUpperCase() ) : (n ? n.toUpperCase() : n) ;
 const ALL_NOTES = ['c', 'db', 'd', 'eb', 'e', 'f', 'f#', 'g', 'ab', 'a', 'bb', 'b', ];
 const ALL_NOTES_FLAT = ['c', 'db', 'd', 'eb', 'e', 'f', 'gb', 'g', 'ab', 'a', 'bb', 'b', ];
 const ALL_NOTES_SHARP = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', ];
@@ -25,6 +25,30 @@ const ALL_TUNNINGS = ['richter', 'country'];
 const richterGenerator = (key) => {
     const notes = SCALE_ACCIDENTAL[key];
     return {
+        halfBlowBend: [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            circularGet(key, 3, notes),
+            circularGet(key, 6, notes),
+            circularGet(key, 11, notes),
+        ],
+        wholeBlowBend: [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            circularGet(key, 10, notes),
+        ],
         blow: [
             circularGet(key, 0, notes),
             circularGet(key, 4, notes),
@@ -48,13 +72,73 @@ const richterGenerator = (key) => {
             circularGet(key, 2, notes),
             circularGet(key, 5, notes),
             circularGet(key, 9, notes),
-        ]
+        ],
+        halfDrawBend: [
+            circularGet(key, 1, notes),
+            circularGet(key, 6, notes),
+            circularGet(key, 10, notes),
+            circularGet(key, 1, notes),
+            null,
+            circularGet(key, 8, notes),
+            null,
+            null,
+            null,
+            null,
+        ],
+        wholeDrawBend: [
+            null,
+            circularGet(key, 5, notes),
+            circularGet(key, 9, notes),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        ],
+        wholeHalfDrawBend: [
+            null,
+            null,
+            circularGet(key, 8, notes),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        ],
     };
 }
 
 const countryGenerator = (key) => {
     const notes = SCALE_ACCIDENTAL[key];
     return {
+        halfBlowBend: [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            circularGet(key, 3, notes),
+            circularGet(key, 6, notes),
+            circularGet(key, 11, notes),
+        ],
+        wholeBlowBend: [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            circularGet(key, 10, notes),
+        ],
         blow: [
             circularGet(key, 0, notes),
             circularGet(key, 4, notes),
@@ -78,7 +162,43 @@ const countryGenerator = (key) => {
             circularGet(key, 2, notes),
             circularGet(key, 5, notes),
             circularGet(key, 9, notes),
-        ]
+        ],
+        halfDrawBend: [
+            circularGet(key, 1, notes),
+            circularGet(key, 6, notes),
+            circularGet(key, 10, notes),
+            circularGet(key, 1, notes),
+            null,
+            circularGet(key, 8, notes),
+            null,
+            null,
+            null,
+            null,
+        ],
+        wholeDrawBend: [
+            null,
+            circularGet(key, 5, notes),
+            circularGet(key, 9, notes),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        ],
+        wholeHalfDrawBend: [
+            null,
+            null,
+            circularGet(key, 8, notes),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+        ],
     };
 }
 const TUNNING_TO_GENERATOR = {
