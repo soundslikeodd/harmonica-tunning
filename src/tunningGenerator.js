@@ -22,6 +22,16 @@ const circularGet = (root, offset, notes) => notes[(notes.indexOf(root) + offset
 
 const ALL_TUNNINGS = ['richter', 'country'];
 
+const EMPTY_TUNNING = {
+    halfBlowBend: new Array(10).fill(null),
+    wholeBlowBend: new Array(10).fill(null),
+    blow: new Array(10).fill(null),
+    draw: new Array(10).fill(null),
+    halfDrawBend: new Array(10).fill(null),
+    wholeDrawBend: new Array(10).fill(null),
+    wholeHalfDrawBend: new Array(10).fill(null),
+};
+
 const richterGenerator = (key) => {
     const notes = SCALE_ACCIDENTAL[key];
     return {
