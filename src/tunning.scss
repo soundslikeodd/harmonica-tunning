@@ -1,34 +1,31 @@
 @import './variables.scss';
 
 .tng-table {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-
-    .tng-title {
-        font-size: 14px;
-        font-weight: 700;
-        padding: 10px;
-        line-height: 24px;
-    }
-
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: min-content;
 
     .tng-row {
         display: flex;
         font-size: 14px;
 
-        &.blw {
+        .blw {
             background-color: #afeeee;
         }
 
-        &.drw {
+        .drw {
             background-color: #eebeaf;
         }
 
-        &.blw-bnd {
+        .blw-bnd {
             background-color: #eedeaf;
         }
 
-        &.drw-bnd {
+        .drw-bnd {
             background-color: #ceafee
         }
 

@@ -1,59 +1,67 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import Select from 'react-select';
 import Tunning from './Tunning';
-import {ALL_NOTES, ALL_TUNNINGS, TUNNING_TO_GENERATOR, labelizeNote} from './tunningGenerator';
+import {
+  ALL_NOTES, ALL_TUNNINGS, TUNNING_TO_GENERATOR, labelizeNote,
+} from './tunningGenerator';
 import './app.scss';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedKey: {value: 'c', label: 'c'},
-            selectedTunning: {value: 'richter', label: 'richter'},
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedKey: { value: 'c', label: 'C' },
+      selectedTunning: { value: 'richter', label: 'richter' },
+    };
+  }
 
-    render() {
-        const {
-            selectedKey,
-            selectedTunning,
-        } = this.state;
-        return (
-            <Fragment>
-                <main id="app">
-                    <header id="app--hdr">
-                        <h2>
+  render() {
+    const {
+      selectedKey,
+      selectedTunning,
+    } = this.state;
+    return (
+      <Fragment>
+        <main id="app">
+          <header id="app--hdr">
+            <h2>
                             Harmonica Tunnings
-                        </h2>
-                    </header>
-                    <section id="app--mn">
-                        <aside id="app--mn-controls">
-                            <Select
-                                className="tunning-select"
-                                value={selectedTunning}
-                                onChange={n => this.setState({selectedTunning: n})}
-                                options={ALL_TUNNINGS.map(n => ({value: n, label: n}))}
-                            />
-                            <Select
-                                className="root-select"
-                                value={selectedKey}
-                                onChange={n => this.setState({selectedKey: n})}
-                                options={ALL_NOTES.map(n => ({value: n, label: labelizeNote(n)}))}
-                            />
-                        </aside>
-                        <Tunning
-                            musicKey={selectedKey.value}
-                            tunning={selectedTunning.value}
-                            notes={TUNNING_TO_GENERATOR[selectedTunning.value](selectedKey.value)}
-                        />
-                    </section>
-                </main>
-                <footer id="footer">
+            </h2>
+          </header>
+          <section id="app--mn">
+            <aside id="app--mn-controls">
+              <label>
+                Tunning
+                <Select
+                  className="tunning-select"
+                  value={selectedTunning}
+                  onChange={n => this.setState({ selectedTunning: n })}
+                  options={ALL_TUNNINGS.map(n => ({ value: n, label: n }))}
+                />
+              </label>
+              <label>
+                Key
+                <Select
+                  className="root-select"
+                  value={selectedKey}
+                  onChange={n => this.setState({ selectedKey: n })}
+                  options={ALL_NOTES.map(n => ({ value: n, label: labelizeNote(n) }))}
+                />
+              </label>
+            </aside>
+            <Tunning
+              musicKey={selectedKey.value}
+              tunning={selectedTunning.value}
+              notes={TUNNING_TO_GENERATOR[selectedTunning.value](selectedKey.value)}
+            />
+          </section>
+        </main>
+        <footer id="footer">
                     contact
-                </footer>
-            </Fragment>
-        );
-    }
+        </footer>
+      </Fragment>
+    );
+  }
 }
 
 export default App;
