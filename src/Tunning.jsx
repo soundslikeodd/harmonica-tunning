@@ -12,13 +12,15 @@ class Tunning extends PureComponent {
     return (
       <section className="tng-table">
         <div className="tng-row">
-          <div className="legend blw-bnd">
-                        Whole Bend
+          <div className="legend">
+                        Whole
           </div>
           {notes.wholeBlowBend.map((n, i) => (n ? (
-            <div className="blw-bnd">
+            <div
+              key={`whole-blow-bend-${n}-${i}`}
+              className="bnd"
+            >
               <div
-                key={`whole-blow-bend-${n}-${i}`}
                 className="tng--hl tng--hl-nt"
               >
                 {labelizeNote(n)}
@@ -32,15 +34,15 @@ class Tunning extends PureComponent {
           )))}
         </div>
         <div className="tng-row">
-          <div className="legend blw-bnd">
-                        1/2 Bend
+          <div className="legend">
+                        1/2
           </div>
           {notes.halfBlowBend.map((n, i) => (n ? (
-            <div className="blw-bnd">
-              <div
-                key={`half-blow-bend-${n}-${i}`}
-                className="tng--hl tng--hl-nt"
-              >
+            <div
+              key={`half-blow-bend-${n}-${i}`}
+              className="bnd"
+            >
+              <div className="tng--hl tng--hl-nt">
                 {labelizeNote(n)}
               </div>
             </div>
@@ -56,11 +58,11 @@ class Tunning extends PureComponent {
                         BLOW
           </div>
           {notes.blow.map((n, i) => (
-            <div className="blw">
-              <div
-                key={`blow-${n}-${i}`}
-                className="tng--hl tng--hl-nt"
-              >
+            <div
+              key={`blow-${n}-${i}`}
+              className="blw"
+            >
+              <div className="tng--hl tng--hl-nt">
                 {labelizeNote(n)}
               </div>
             </div>
@@ -68,9 +70,9 @@ class Tunning extends PureComponent {
         </div>
         <div className="tng-row">
           <mark className="legend" />
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n, i) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => (
             <div
-              key={`hole-${n}-${i}`}
+              key={`hole-${n}`}
               className="tng--hl tng--hl-nb"
             >
               {n}
@@ -82,26 +84,26 @@ class Tunning extends PureComponent {
                         DRAW
           </div>
           {notes.draw.map((n, i) => (
-            <div className="drw">
-              <div
-                key={`draw-${n}-${i}`}
-                className="tng--hl tng--hl-nt"
-              >
+            <div
+              className="drw"
+              key={`draw-${n}-${i}`}
+            >
+              <div className="tng--hl tng--hl-nt">
                 {labelizeNote(n)}
               </div>
             </div>
           ))}
         </div>
         <div className="tng-row">
-          <div className="legend drw-bnd">
-                        1/2 Bend
+          <div className="legend">
+                        1/2
           </div>
           {notes.halfDrawBend.map((n, i) => (n ? (
-            <div className="drw-bnd">
-              <div
-                key={`half-draw-bend-${n}-${i}`}
-                className="tng--hl tng--hl-nt"
-              >
+            <div
+              key={`half-draw-bend-${n}-${i}`}
+              className="bnd"
+            >
+              <div className="tng--hl tng--hl-nt">
                 {labelizeNote(n)}
               </div>
             </div>
@@ -113,15 +115,15 @@ class Tunning extends PureComponent {
           )))}
         </div>
         <div className="tng-row">
-          <div className="legend drw-bnd">
-                        Whole Bend
+          <div className="legend">
+                        Whole
           </div>
           {notes.wholeDrawBend.map((n, i) => (n ? (
-            <div className="drw-bnd">
-              <div
-                key={`whole-draw-bend-${n}-${i}`}
-                className="tng--hl tng--hl-nt"
-              >
+            <div
+              key={`whole-draw-bend-${n}-${i}`}
+              className="bnd"
+            >
+              <div className="tng--hl tng--hl-nt">
                 {labelizeNote(n)}
               </div>
             </div>
@@ -133,15 +135,15 @@ class Tunning extends PureComponent {
           )))}
         </div>
         <div className="tng-row">
-          <div className="legend drw-bnd">
-                        1.5 Bend
+          <div className="legend">
+                        1.5
           </div>
           {notes.wholeHalfDrawBend.map((n, i) => (n ? (
-            <div className="drw-bnd">
-              <div
-                key={`whole-half-draw-bend-${n}-${i}`}
-                className="tng--hl tng--hl-nt"
-              >
+            <div
+              key={`whole-half-draw-bend-${n}-${i}`}
+              className="bnd"
+            >
+              <div className="tng--hl tng--hl-nt">
                 {labelizeNote(n)}
               </div>
             </div>
@@ -151,6 +153,14 @@ class Tunning extends PureComponent {
               className="tng--empty"
             />
           )))}
+        </div>
+        <div className="tng-row tng-row-lgnd">
+          <span className="tng-lgnd tng-lgnd-bnd">
+            Bend
+          </span>
+          <span className="tng-lgnd tng-lgnd-ovrblw">
+            Overblow
+          </span>
         </div>
       </section>
     );

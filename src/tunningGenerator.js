@@ -26,8 +26,6 @@ const SCALE_ACCIDENTAL = {
 
 const circularGet = (root, offset, notes) => notes[(notes.indexOf(root) + offset) % notes.length];
 
-const ALL_TUNNINGS = ['richter', 'country'];
-
 /* eslint-disable-next-line no-unused-vars */
 const EMPTY_TUNNING = {
   halfBlowBend: new Array(10).fill(null),
@@ -185,6 +183,96 @@ const countryGenerator = (key) => {
       circularGet(key, 6, notes),
       circularGet(key, 10, notes),
       circularGet(key, 1, notes),
+      circularGet(key, 5, notes),
+      circularGet(key, 8, notes),
+      null,
+      null,
+      null,
+      null,
+    ],
+    wholeDrawBend: [
+      null,
+      circularGet(key, 5, notes),
+      circularGet(key, 9, notes),
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+    ],
+    wholeHalfDrawBend: [
+      null,
+      null,
+      circularGet(key, 8, notes),
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+    ],
+  };
+};
+
+const paddyRichterGenerator = (key) => {
+  const notes = SCALE_ACCIDENTAL[key];
+  return {
+    halfBlowBend: [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      circularGet(key, 3, notes),
+      circularGet(key, 6, notes),
+      circularGet(key, 11, notes),
+    ],
+    wholeBlowBend: [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      circularGet(key, 10, notes),
+    ],
+    blow: [
+      circularGet(key, 0, notes),
+      circularGet(key, 4, notes),
+      circularGet(key, 9, notes),
+      circularGet(key, 0, notes),
+      circularGet(key, 4, notes),
+      circularGet(key, 7, notes),
+      circularGet(key, 12, notes),
+      circularGet(key, 4, notes),
+      circularGet(key, 7, notes),
+      circularGet(key, 12, notes),
+    ],
+    draw: [
+      circularGet(key, 2, notes),
+      circularGet(key, 7, notes),
+      circularGet(key, 11, notes),
+      circularGet(key, 2, notes),
+      circularGet(key, 5, notes),
+      circularGet(key, 9, notes),
+      circularGet(key, 11, notes),
+      circularGet(key, 2, notes),
+      circularGet(key, 5, notes),
+      circularGet(key, 9, notes),
+    ],
+    halfDrawBend: [
+      circularGet(key, 1, notes),
+      circularGet(key, 6, notes),
+      circularGet(key, 10, notes),
+      circularGet(key, 1, notes),
       null,
       circularGet(key, 8, notes),
       null,
@@ -218,17 +306,17 @@ const countryGenerator = (key) => {
     ],
   };
 };
+
 const TUNNING_TO_GENERATOR = {
-  richter: richterGenerator,
-  country: countryGenerator,
+  Richter: richterGenerator,
+  'Paddy Richter': paddyRichterGenerator,
+  Country: countryGenerator,
 };
 
 const noOp = () => {};
 export default noOp;
 export {
   ALL_NOTES,
-  ALL_TUNNINGS,
   TUNNING_TO_GENERATOR,
   labelizeNote,
 };
-

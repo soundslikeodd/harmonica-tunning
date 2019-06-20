@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Select from 'react-select';
 import Tunning from './Tunning';
 import {
-  ALL_NOTES, ALL_TUNNINGS, TUNNING_TO_GENERATOR, labelizeNote,
+  ALL_NOTES, TUNNING_TO_GENERATOR, labelizeNote,
 } from './tunningGenerator';
 import './app.scss';
 
@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       selectedKey: { value: 'c', label: 'C' },
-      selectedTunning: { value: 'richter', label: 'richter' },
+      selectedTunning: { value: 'Richter', label: 'Richter' },
     };
   }
 
@@ -36,7 +36,7 @@ class App extends Component {
                   className="tunning-select"
                   value={selectedTunning}
                   onChange={n => this.setState({ selectedTunning: n })}
-                  options={ALL_TUNNINGS.map(n => ({ value: n, label: n }))}
+                  options={Object.keys(TUNNING_TO_GENERATOR).map(n => ({ value: n, label: n }))}
                 />
               </label>
               <label>

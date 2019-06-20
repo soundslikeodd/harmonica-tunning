@@ -1,17 +1,25 @@
 @import './variables.scss';
 
+$border-radius: 3px; // #ceafee
+
 .tng-table {
     display: inline-flex;
     flex-direction: column;
     padding: 2px;
-    margin: 2px;
+    margin: 15px 0;
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: $border-radius;
     width: min-content;
 
     .tng-row {
         display: flex;
+        border-bottom: 1px dotted black;
         font-size: 14px;
+
+        &.tng-row-lgnd {
+            padding-top: 5px;
+            border-bottom: none;
+        }
 
         .blw {
             background-color: #afeeee;
@@ -21,12 +29,36 @@
             background-color: #eebeaf;
         }
 
-        .blw-bnd {
+        .bnd {
             background-color: #eedeaf;
         }
 
-        .drw-bnd {
-            background-color: #ceafee
+        .tng-lgnd {
+            &.tng-lgnd-bnd {
+                &:before {
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    border: 1px solid black;
+                    border-radius: $border-radius;
+                    margin: 0 2px;
+                    content: " ";
+                    background-color: #eedeaf;
+                }
+            }
+
+            &.tng-lgnd-ovrblw {
+                &:before {
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    border: 1px solid black;
+                    border-radius: $border-radius;
+                    margin: 0 2px;
+                    content: " ";
+                    background-color: #ceafee;
+                }
+            }
         }
 
         mark {
@@ -53,7 +85,7 @@
             min-width: 40px;
             text-align: center;
             border: 1px solid black;
-            border-radius: 3px;
+            border-radius: $border-radius;
  
             &.tng--hl-nt {
                 font-weight: 700;
