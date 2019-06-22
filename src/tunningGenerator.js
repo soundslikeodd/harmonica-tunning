@@ -24,7 +24,15 @@ const SCALE_ACCIDENTAL = {
   b: ALL_NOTES_SHARP,
 };
 
-const circularGet = (root, offset, notes) => notes[(notes.indexOf(root) + offset) % notes.length];
+const circularGet = (root, offset, notes) => (
+  offset === null
+    ? offset
+    : notes[(notes.indexOf(root) + offset) % notes.length]
+);
+const augment = (tunning, key, notes) => Object.keys(tunning).reduce(
+  (acc, i) => ({ ...acc, [i]: tunning[i].map(h => circularGet(key, h, notes)) }),
+  {},
+);
 
 /* eslint-disable-next-line no-unused-vars */
 const EMPTY_TUNNING = {
@@ -37,275 +45,47 @@ const EMPTY_TUNNING = {
   wholeHalfDrawBend: new Array(10).fill(null),
 };
 
-const richterGenerator = (key) => {
-  const notes = SCALE_ACCIDENTAL[key];
-  return {
-    halfBlowBend: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      circularGet(key, 3, notes),
-      circularGet(key, 6, notes),
-      circularGet(key, 11, notes),
-    ],
-    wholeBlowBend: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      circularGet(key, 10, notes),
-    ],
-    blow: [
-      circularGet(key, 0, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 0, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 12, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 12, notes),
-    ],
-    draw: [
-      circularGet(key, 2, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 11, notes),
-      circularGet(key, 2, notes),
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-      circularGet(key, 11, notes),
-      circularGet(key, 2, notes),
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-    ],
-    halfDrawBend: [
-      circularGet(key, 1, notes),
-      circularGet(key, 6, notes),
-      circularGet(key, 10, notes),
-      circularGet(key, 1, notes),
-      null,
-      circularGet(key, 8, notes),
-      null,
-      null,
-      null,
-      null,
-    ],
-    wholeDrawBend: [
-      null,
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ],
-    wholeHalfDrawBend: [
-      null,
-      null,
-      circularGet(key, 8, notes),
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ],
-  };
-};
+const richterGenerator = key => augment(
+  {
+    halfBlowBend: [null, null, null, null, null, null, null, 3, 6, 11],
+    wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
+    blow: [0, 4, 7, 0, 4, 7, 0, 4, 7, 0],
+    draw: [2, 7, 11, 2, 5, 9, 11, 2, 5, 9],
+    halfDrawBend: [1, 6, 10, 1, null, 8, null, null, null, null],
+    wholeDrawBend: [null, 5, 9, null, null, null, null, null, null, null],
+    wholeHalfDrawBend: [null, null, 8, null, null, null, null, null, null, null],
+  },
+  key,
+  SCALE_ACCIDENTAL[key],
+);
 
-const countryGenerator = (key) => {
-  const notes = SCALE_ACCIDENTAL[key];
-  return {
-    halfBlowBend: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      circularGet(key, 3, notes),
-      circularGet(key, 6, notes),
-      circularGet(key, 11, notes),
-    ],
-    wholeBlowBend: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      circularGet(key, 10, notes),
-    ],
-    blow: [
-      circularGet(key, 0, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 0, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 12, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 12, notes),
-    ],
-    draw: [
-      circularGet(key, 2, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 11, notes),
-      circularGet(key, 2, notes),
-      circularGet(key, 6, notes),
-      circularGet(key, 9, notes),
-      circularGet(key, 11, notes),
-      circularGet(key, 2, notes),
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-    ],
-    halfDrawBend: [
-      circularGet(key, 1, notes),
-      circularGet(key, 6, notes),
-      circularGet(key, 10, notes),
-      circularGet(key, 1, notes),
-      circularGet(key, 5, notes),
-      circularGet(key, 8, notes),
-      null,
-      null,
-      null,
-      null,
-    ],
-    wholeDrawBend: [
-      null,
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ],
-    wholeHalfDrawBend: [
-      null,
-      null,
-      circularGet(key, 8, notes),
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ],
-  };
-};
+const countryGenerator = key => augment(
+  {
+    halfBlowBend: [null, null, null, null, null, null, null, 3, 6, 11],
+    wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
+    blow: [0, 4, 7, 0, 4, 7, 0, 4, 7, 0],
+    draw: [2, 7, 11, 2, 6, 9, 11, 2, 5, 9],
+    halfDrawBend: [1, 6, 10, 1, 5, 8, null, null, null, null],
+    wholeDrawBend: [null, 5, 9, null, null, null, null, null, null, null],
+    wholeHalfDrawBend: [null, null, 8, null, null, null, null, null, null, null],
+  },
+  key,
+  SCALE_ACCIDENTAL[key],
+);
 
-const paddyRichterGenerator = (key) => {
-  const notes = SCALE_ACCIDENTAL[key];
-  return {
-    halfBlowBend: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      circularGet(key, 3, notes),
-      circularGet(key, 6, notes),
-      circularGet(key, 11, notes),
-    ],
-    wholeBlowBend: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      circularGet(key, 10, notes),
-    ],
-    blow: [
-      circularGet(key, 0, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 9, notes),
-      circularGet(key, 0, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 12, notes),
-      circularGet(key, 4, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 12, notes),
-    ],
-    draw: [
-      circularGet(key, 2, notes),
-      circularGet(key, 7, notes),
-      circularGet(key, 11, notes),
-      circularGet(key, 2, notes),
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-      circularGet(key, 11, notes),
-      circularGet(key, 2, notes),
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-    ],
-    halfDrawBend: [
-      circularGet(key, 1, notes),
-      circularGet(key, 6, notes),
-      circularGet(key, 10, notes),
-      circularGet(key, 1, notes),
-      null,
-      circularGet(key, 8, notes),
-      null,
-      null,
-      null,
-      null,
-    ],
-    wholeDrawBend: [
-      null,
-      circularGet(key, 5, notes),
-      circularGet(key, 9, notes),
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ],
-    wholeHalfDrawBend: [
-      null,
-      null,
-      circularGet(key, 8, notes),
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ],
-  };
-};
+const paddyRichterGenerator = key => augment(
+  {
+    halfBlowBend: [null, null, null, null, null, null, null, 3, 6, 11],
+    wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
+    blow: [0, 4, 9, 0, 4, 7, 0, 4, 7, 0],
+    draw: [2, 7, 11, 2, 5, 9, 11, 2, 5, 9],
+    halfDrawBend: [1, 6, 10, 1, null, 8, null, null, null, null],
+    wholeDrawBend: [null, 5, 9, null, null, null, null, null, null, null],
+    wholeHalfDrawBend: [null, null, 8, null, null, null, null, null, null, null],
+  },
+  key,
+  SCALE_ACCIDENTAL[key],
+);
 
 const TUNNING_TO_GENERATOR = {
   Richter: richterGenerator,
