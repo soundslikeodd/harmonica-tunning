@@ -1,12 +1,10 @@
 @import './variables.scss';
 
-$border-radius: 3px; // #ceafee
-
 .tng-table {
     display: inline-flex;
     flex-direction: column;
     padding: 2px;
-    margin: 15px 0;
+    margin: 5px 0;
     border: 1px solid black;
     border-radius: $border-radius;
     width: min-content;
@@ -15,6 +13,7 @@ $border-radius: 3px; // #ceafee
         display: flex;
         border-bottom: 1px dotted black;
         font-size: 14px;
+        line-height: 24px;
 
         &.tng-row-lgnd {
             padding-top: 5px;

@@ -2,8 +2,8 @@
 const labelizeNote = (n) => {
   if (!n) return n;
   const label = n.length > 1 && (n[1] === 'b' || n[1] === '#')
-    ? `${n[0].toUpperCase()}${String.fromCharCode(n[1] === 'b' ? 9837 : 9839)}`
-    : n.toUpperCase();
+    ? `${n[0].toUpperCase()}${String.fromCharCode(n[1] === 'b' ? 9837 : 9839)}${n.substring(2)}`
+    : `${n[0].toUpperCase()}${n.substring(1)}`;
   return label;
 };
 const ALL_NOTES = ['c', 'db', 'd', 'eb', 'e', 'f', 'f#', 'g', 'ab', 'a', 'bb', 'b'];
@@ -33,6 +33,21 @@ const augment = (tunning, key, notes) => Object.keys(tunning).reduce(
   (acc, i) => ({ ...acc, [i]: tunning[i].map(h => circularGet(key, h, notes)) }),
   {},
 );
+
+const RICHTER_POSITION_ORDER = ['c', 'g', 'd', 'a', 'e', 'b', 'f#', 'db', 'ab', 'eb', 'bb', 'f'];
+
+const richterPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i >= 2 ? 'm' : ''}`);
+const harmonicMinorPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i >= 3 || i <= 0 ? 'm' : ''}`);
+const naturalMinorPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i <= 1 ? 'm' : ''}`);
+
+const TUNNING_TO_POSITIONS = {
+  Richter: richterPositions,
+  'Paddy Richter': richterPositions,
+  Country: richterPositions,
+  'Melody Maker': richterPositions,
+  'Natural Minor': naturalMinorPositions,
+  'Harmonic Minor': harmonicMinorPositions,
+}
 
 /* eslint-disable-next-line no-unused-vars */
 const EMPTY_TUNNING = {
@@ -143,5 +158,6 @@ export default noOp;
 export {
   ALL_NOTES,
   TUNNING_TO_GENERATOR,
+  TUNNING_TO_POSITIONS,
   labelizeNote,
 };
