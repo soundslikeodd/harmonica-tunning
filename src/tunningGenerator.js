@@ -87,10 +87,55 @@ const paddyRichterGenerator = key => augment(
   SCALE_ACCIDENTAL[key],
 );
 
+const melodyMakerGenerator = key => augment(
+  {
+    halfBlowBend: [null, null, null, null, null, null, null, 3, null, 11],
+    wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
+    blow: [0, 4, 9, 0, 4, 7, 0, 4, 7, 0],
+    draw: [2, 7, 11, 2, 6, 9, 11, 2, 6, 9],
+    halfDrawBend: [1, 6, 10, 1, 5, 8, null, null, null, null],
+    wholeDrawBend: [null, 5, null, null, null, null, null, null, null, null],
+    wholeHalfDrawBend: [null, null, null, null, null, null, null, null, null, null],
+  },
+  key,
+  SCALE_ACCIDENTAL[key],
+);
+
+const harmonicMinorGenerator = key => augment(
+  {
+    halfBlowBend: [null, null, null, null, null, null, null, null, 6, 11],
+    wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
+    blow: [0, 3, 7, 0, 3, 7, 0, 3, 7, 0],
+    draw: [2, 7, 11, 2, 5, 8, 11, 2, 5, 8],
+    halfDrawBend: [1, 6, 10, 1, 4, null, null, null, null, 9],
+    wholeDrawBend: [null, 5, 9, null, null, null, null, null, null, null],
+    wholeHalfDrawBend: [null, 4, 8, null, null, null, null, null, null, null],
+  },
+  key,
+  SCALE_ACCIDENTAL[key],
+);
+
+const naturalMinorGenerator = key => augment(
+  {
+    halfBlowBend: [null, null, null, null, null, null, 11, null, 6, 11],
+    wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
+    blow: [0, 3, 7, 0, 3, 7, 0, 3, 7, 0],
+    draw: [2, 7, 10, 2, 5, 9, 10, 2, 5, 9],
+    halfDrawBend: [1, 6, 9, 1, 4, 8, null, null, null, null],
+    wholeDrawBend: [null, 5, 8, null, null, null, null, null, null, null],
+    wholeHalfDrawBend: [null, 4, null, null, null, null, null, null, null, null],
+  },
+  key,
+  SCALE_ACCIDENTAL[key],
+);
+
 const TUNNING_TO_GENERATOR = {
   Richter: richterGenerator,
   'Paddy Richter': paddyRichterGenerator,
   Country: countryGenerator,
+  'Melody Maker': melodyMakerGenerator,
+  'Natural Minor': naturalMinorGenerator,
+  'Harmonic Minor': harmonicMinorGenerator,
 };
 
 const noOp = () => {};

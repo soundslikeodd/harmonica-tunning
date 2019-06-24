@@ -41,10 +41,11 @@ html {
 
         .root-select {
             width: 100px;
+            padding-right: 5px;
         }
 
         .tunning-select {
-            width: 150px;
+            width: 180px;
             padding-right: 5px;
         }
     }
@@ -52,7 +53,6 @@ html {
 }
 
 #footer {
-  flex-shrink: 0;
   padding: 15px;
   background-color: $hex-dark-sea-green;
 }

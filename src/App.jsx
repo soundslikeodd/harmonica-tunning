@@ -31,21 +31,21 @@ class App extends Component {
           <section id="app--mn">
             <aside id="app--mn-controls">
               <label>
-                Tunning
-                <Select
-                  className="tunning-select"
-                  value={selectedTunning}
-                  onChange={n => this.setState({ selectedTunning: n })}
-                  options={Object.keys(TUNNING_TO_GENERATOR).map(n => ({ value: n, label: n }))}
-                />
-              </label>
-              <label>
                 Key
                 <Select
                   className="root-select"
                   value={selectedKey}
                   onChange={n => this.setState({ selectedKey: n })}
                   options={ALL_NOTES.map(n => ({ value: n, label: labelizeNote(n) }))}
+                />
+              </label>
+              <label>
+                Tunning
+                <Select
+                  className="tunning-select"
+                  value={selectedTunning}
+                  onChange={n => this.setState({ selectedTunning: n })}
+                  options={Object.keys(TUNNING_TO_GENERATOR).map(n => ({ value: n, label: n }))}
                 />
               </label>
             </aside>
