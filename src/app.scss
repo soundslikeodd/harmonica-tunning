@@ -17,7 +17,8 @@ html {
 }
 
 #app {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
+
   #app--hdr {
     margin: 10px 0;
 
@@ -54,6 +55,16 @@ html {
 }
 
 #footer {
+  display: flex;
+  color: $hex-dark-red;
   padding: 15px;
   background-color: $hex-dark-sea-green;
+
+  .ftr-logo {
+    padding: 15px;
+  }
+
+  .ftr-contact {
+    padding: 15px;
+  }
 }

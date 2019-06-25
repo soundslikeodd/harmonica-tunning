@@ -47,6 +47,8 @@
             }
 
             &.tng-lgnd-ovrblw {
+                display: none; // TODO: until I figure it out
+
                 &:before {
                     display: inline-block;
                     width: 15px;

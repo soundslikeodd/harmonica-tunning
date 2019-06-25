@@ -66,7 +66,17 @@ class App extends Component {
           </section>
         </main>
         <footer id="footer">
-                    contact
+          <div className="ftr-logo">
+            soundslikeodd
+            <div className="copyright">
+              copyright
+              {` ${new Date().getFullYear()}`}
+            </div>
+          </div>
+          <div className="ftr-contact">
+                    Contact: &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#110;
+                    &#116;&#097;&#099;&#116;&#046;&#099;&#111;&#109;
+          </div>
         </footer>
       </Fragment>
     );

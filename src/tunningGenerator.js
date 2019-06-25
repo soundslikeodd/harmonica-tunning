@@ -47,7 +47,7 @@ const TUNNING_TO_POSITIONS = {
   'Melody Maker': richterPositions,
   'Natural Minor': naturalMinorPositions,
   'Harmonic Minor': harmonicMinorPositions,
-}
+};
 
 /* eslint-disable-next-line no-unused-vars */
 const EMPTY_TUNNING = {
