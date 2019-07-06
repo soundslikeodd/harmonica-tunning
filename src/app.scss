@@ -56,12 +56,26 @@ html {
 
 #footer {
   display: flex;
-  color: $hex-dark-red;
+  color: white;
   padding: 15px;
   background-color: $hex-dark-sea-green;
 
   .ftr-logo {
     padding: 15px;
+    display: flex;
+
+    .goat-logo {
+      background-image: url("./goat.svg");
+      width: 35px;
+      height: 50px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .copyright {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .ftr-contact {

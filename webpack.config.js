@@ -31,6 +31,10 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.svg$/,
+        use: 'file-loader',
+      },
     ],
   },
   devtool: 'eval-source-map',

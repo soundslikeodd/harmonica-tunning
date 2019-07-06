@@ -67,15 +67,21 @@ class App extends Component {
         </main>
         <footer id="footer">
           <div className="ftr-logo">
-            soundslikeodd
+            <div className="goat-logo" alt="soundslikeodd goat" />
             <div className="copyright">
-              copyright
-              {` ${new Date().getFullYear()}`}
+              <div>
+                soundslikeodd
+              </div>
+              <div>
+                copyright
+                {` ${new Date().getFullYear()}`}
+              </div>
             </div>
           </div>
           <div className="ftr-contact">
-                    Contact: &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;&#110;
-                    &#116;&#097;&#099;&#116;&#046;&#099;&#111;&#109;
+                    Contact:
+                    &#099;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#099;&#111;
+                    &#110;&#116;&#097;&#099;&#116;&#046;&#099;&#111;&#109;
           </div>
         </footer>
       </Fragment>
