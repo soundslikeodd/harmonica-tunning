@@ -9,6 +9,7 @@ class Positions extends PureComponent {
   render() {
     const {
       positions,
+      minorPositions,
     } = this.props;
     return (
       <section className="pstn">
@@ -33,6 +34,9 @@ class Positions extends PureComponent {
             <div className="pstn--tbl-n">
               {labelizeNote(n)}
             </div>
+            <div className="pstn--tbl-n">
+              {labelizeNote(minorPositions[i])}
+            </div>
           </div>
         ))}
       </section>
@@ -42,6 +46,7 @@ class Positions extends PureComponent {
 
 Positions.propTypes = {
   positions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  minorPositions: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Positions;

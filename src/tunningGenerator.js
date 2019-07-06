@@ -36,7 +36,8 @@ const augment = (tunning, key, notes) => Object.keys(tunning).reduce(
 
 const RICHTER_POSITION_ORDER = ['c', 'g', 'd', 'a', 'e', 'b', 'f#', 'db', 'ab', 'eb', 'bb', 'f'];
 
-const richterPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i >= 2 ? 'm' : ''}`);
+const richterPositions = root => new Array(12).fill(null).map((v, i) => i).map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}`);
+const richterPositionsMinor = root => new Array(12).fill(null).map((v, i) => i).map((v, i) => `${circularGet(circularGet(root, 3, RICHTER_POSITION_ORDER), i, RICHTER_POSITION_ORDER)}m`);
 const harmonicMinorPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i >= 3 || i <= 0 ? 'm' : ''}`);
 const naturalMinorPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i <= 1 ? 'm' : ''}`);
 
@@ -49,15 +50,13 @@ const TUNNING_TO_POSITIONS = {
   'Harmonic Minor': harmonicMinorPositions,
 };
 
-/* eslint-disable-next-line no-unused-vars */
-const EMPTY_TUNNING = {
-  halfBlowBend: new Array(10).fill(null),
-  wholeBlowBend: new Array(10).fill(null),
-  blow: new Array(10).fill(null),
-  draw: new Array(10).fill(null),
-  halfDrawBend: new Array(10).fill(null),
-  wholeDrawBend: new Array(10).fill(null),
-  wholeHalfDrawBend: new Array(10).fill(null),
+const TUNNING_TO_POSITIONS_MINOR = {
+  Richter: richterPositionsMinor,
+  'Paddy Richter': richterPositionsMinor,
+  Country: richterPositionsMinor,
+  'Melody Maker': richterPositionsMinor,
+  'Natural Minor': null,
+  'Harmonic Minor': null,
 };
 
 const richterGenerator = key => augment(
@@ -159,5 +158,6 @@ export {
   ALL_NOTES,
   TUNNING_TO_GENERATOR,
   TUNNING_TO_POSITIONS,
+  TUNNING_TO_POSITIONS_MINOR,
   labelizeNote,
 };

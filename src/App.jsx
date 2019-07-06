@@ -4,7 +4,7 @@ import Description from './Description';
 import Positions from './Positions';
 import Tunning from './Tunning';
 import {
-  ALL_NOTES, TUNNING_TO_GENERATOR, TUNNING_TO_POSITIONS, labelizeNote,
+  ALL_NOTES, TUNNING_TO_GENERATOR, TUNNING_TO_POSITIONS, TUNNING_TO_POSITIONS_MINOR, labelizeNote,
 } from './tunningGenerator';
 import './app.scss';
 
@@ -57,6 +57,11 @@ class App extends Component {
             />
             <Positions
               positions={TUNNING_TO_POSITIONS[selectedTunning.value](selectedKey.value)}
+              minorPositions={
+                TUNNING_TO_POSITIONS_MINOR[selectedTunning.value]
+                  ? TUNNING_TO_POSITIONS_MINOR[selectedTunning.value](selectedKey.value)
+                  : [null, null, null, null]
+              }
             />
             <Tunning
               musicKey={selectedKey.value}
