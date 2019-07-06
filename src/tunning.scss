@@ -1,101 +1,101 @@
 @import './variables.scss';
 
 .tng-table {
-    display: inline-flex;
-    flex-direction: column;
-    padding: 2px;
-    margin: 5px 0;
-    border: 1px solid black;
-    border-radius: $border-radius;
-    width: min-content;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 2px;
+  margin: 5px 0;
+  border: 1px solid black;
+  border-radius: $border-radius;
+  width: min-content;
 
-    .tng-row {
-        display: flex;
-        border-bottom: 1px dotted black;
-        font-size: 14px;
-        line-height: 24px;
+  .tng-row {
+    display: flex;
+    border-bottom: 1px dotted black;
+    font-size: 14px;
+    line-height: 24px;
 
-        &.tng-row-lgnd {
-            padding-top: 5px;
-            border-bottom: none;
-        }
-
-        .blw {
-            background-color: #afeeee;
-        }
-
-        .drw {
-            background-color: #eebeaf;
-        }
-
-        .bnd {
-            background-color: #eedeaf;
-        }
-
-        .tng-lgnd {
-            &.tng-lgnd-bnd {
-                &:before {
-                    display: inline-block;
-                    width: 15px;
-                    height: 15px;
-                    border: 1px solid black;
-                    border-radius: $border-radius;
-                    margin: 0 2px;
-                    content: " ";
-                    background-color: #eedeaf;
-                }
-            }
-
-            &.tng-lgnd-ovrblw {
-                display: none; // TODO: until I figure it out
-
-                &:before {
-                    display: inline-block;
-                    width: 15px;
-                    height: 15px;
-                    border: 1px solid black;
-                    border-radius: $border-radius;
-                    margin: 0 2px;
-                    content: " ";
-                    background-color: #ceafee;
-                }
-            }
-        }
-
-        mark {
-            background-color: rgba(0, 0, 0, .0);
-        }
-
-        .legend {
-            padding: 7px;
-            width: 100px;
-            text-align: center;
-        }
-
-        .tng--empty {
-            margin: 2px;
-            padding: 5px;
-            line-height: 24px;
-            min-width: 40px;
-        }
-
-        .tng--hl {
-            margin: 1px;
-            padding: 5px;
-            line-height: 24px;
-            min-width: 40px;
-            text-align: center;
-            border: 1px solid black;
-            border-radius: $border-radius;
- 
-            &.tng--hl-nt {
-                font-weight: 700;
-            }
-
-            &.tng--hl-nb {
-                line-height: 12px;
-                background-color: white;
-            }
-        }
+    &.tng-row-lgnd {
+      padding-top: 5px;
+      border-bottom: none;
     }
+
+    .blw {
+      background-color: #afeeee;
+    }
+
+    .drw {
+      background-color: #eebeaf;
+    }
+
+    .bnd {
+      background-color: #eedeaf;
+    }
+
+    .tng-lgnd {
+      &.tng-lgnd-bnd {
+        &::before {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          border: 1px solid black;
+          border-radius: $border-radius;
+          margin: 0 2px;
+          content: " ";
+          background-color: #eedeaf;
+        }
+      }
+
+      &.tng-lgnd-ovrblw {
+        display: none; // TODO: until I figure it out
+
+        &::before {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          border: 1px solid black;
+          border-radius: $border-radius;
+          margin: 0 2px;
+          content: " ";
+          background-color: #ceafee;
+        }
+      }
+    }
+
+    mark {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .legend {
+      padding: 7px;
+      width: 100px;
+      text-align: center;
+    }
+
+    .tng--empty {
+      margin: 2px;
+      padding: 5px;
+      line-height: 24px;
+      min-width: 40px;
+    }
+
+    .tng--hl {
+      margin: 1px;
+      padding: 5px;
+      line-height: 24px;
+      min-width: 40px;
+      text-align: center;
+      border: 1px solid black;
+      border-radius: $border-radius;
+
+      &.tng--hl-nt {
+        font-weight: 700;
+      }
+
+      &.tng--hl-nb {
+        line-height: 12px;
+        background-color: white;
+      }
+    }
+  }
 }
