@@ -12,7 +12,7 @@
     "build": "yarn setup && webpack --mode production",
     "lint:es": "eslint --format=pretty --ext .jsx --ext .js .",
     "lint:style": "stylelint '**/*.scss'",
-    "lint": "yarn lint:es"
+    "lint": "yarn lint:es && yarn lint:style"
   },
   "eslintConfig": {
     "extends": "airbnb",
