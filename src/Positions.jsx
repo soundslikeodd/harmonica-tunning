@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { labelizeNote } from './tunningGenerator';
 import './positions.scss';
 
-const appendOrdinalIndicator = n => (n - 1 >= 0 ? `${n}${['st', 'nd', 'rd', ...(new Array(9).fill('th'))][n - 1]}` : n);
+const appendOrdinalIndicator = (n) => (n - 1 >= 0 ? `${n}${['st', 'nd', 'rd', ...(new Array(9).fill('th'))][n - 1]}` : n);
 
 class Positions extends PureComponent {
   render() {
@@ -35,7 +35,7 @@ class Positions extends PureComponent {
               {labelizeNote(n)}
             </div>
             <div className="pstn--tbl-n">
-              {labelizeNote(minorPositions[i])}
+              {labelizeNote(minorPositions[i]) || ' '}
             </div>
           </div>
         ))}

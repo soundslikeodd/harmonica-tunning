@@ -11,7 +11,7 @@ const queryStringToObj = (qStr) => {
   return qSplit.reduce((acc, i) => ({ ...acc, [i.split('=')[0]]: i.split('=')[1] }), {});
 };
 
-const objToQueryString = props => Object.keys(props).reduce((acc, i) => `${acc.length < 1 ? '' : `${acc}&`}${i}=${props[i]}`, '');
+const objToQueryString = (props) => Object.keys(props).reduce((acc, i) => `${acc.length < 1 ? '' : `${acc}&`}${i}=${props[i]}`, '');
 
 const updateParams = (paramMap) => {
   history.replace({

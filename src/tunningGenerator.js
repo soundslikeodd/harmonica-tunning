@@ -30,16 +30,16 @@ const circularGet = (root, offset, notes) => (
     : notes[(notes.indexOf(root) + offset) % notes.length]
 );
 const augment = (tunning, key, notes) => Object.keys(tunning).reduce(
-  (acc, i) => ({ ...acc, [i]: tunning[i].map(h => circularGet(key, h, notes)) }),
+  (acc, i) => ({ ...acc, [i]: tunning[i].map((h) => circularGet(key, h, notes)) }),
   {},
 );
 
 const RICHTER_POSITION_ORDER = ['c', 'g', 'd', 'a', 'e', 'b', 'f#', 'db', 'ab', 'eb', 'bb', 'f'];
 
-const richterPositions = root => new Array(12).fill(null).map((v, i) => i).map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}`);
-const richterPositionsMinor = root => new Array(12).fill(null).map((v, i) => i).map((v, i) => `${circularGet(circularGet(root, 3, RICHTER_POSITION_ORDER), i, RICHTER_POSITION_ORDER)}m`);
-const harmonicMinorPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i >= 3 || i <= 0 ? 'm' : ''}`);
-const naturalMinorPositions = root => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i <= 1 ? 'm' : ''}`);
+const richterPositions = (root) => new Array(12).fill(null).map((v, i) => i).map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}`);
+const richterPositionsMinor = (root) => new Array(12).fill(null).map((v, i) => i).map((v, i) => `${circularGet(circularGet(root, 3, RICHTER_POSITION_ORDER), i, RICHTER_POSITION_ORDER)}m`);
+const harmonicMinorPositions = (root) => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i >= 3 || i <= 0 ? 'm' : ''}`);
+const naturalMinorPositions = (root) => [0, 1, 2, 3].map((v, i) => `${circularGet(root, i, RICHTER_POSITION_ORDER)}${i <= 1 ? 'm' : ''}`);
 
 const TUNNING_TO_POSITIONS = {
   Richter: richterPositions,
@@ -59,7 +59,7 @@ const TUNNING_TO_POSITIONS_MINOR = {
   'Harmonic Minor': null,
 };
 
-const richterGenerator = key => augment(
+const richterGenerator = (key) => augment(
   {
     halfBlowBend: [null, null, null, null, null, null, null, 3, 6, 11],
     wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
@@ -73,7 +73,7 @@ const richterGenerator = key => augment(
   SCALE_ACCIDENTAL[key],
 );
 
-const countryGenerator = key => augment(
+const countryGenerator = (key) => augment(
   {
     halfBlowBend: [null, null, null, null, null, null, null, 3, 6, 11],
     wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
@@ -87,7 +87,7 @@ const countryGenerator = key => augment(
   SCALE_ACCIDENTAL[key],
 );
 
-const paddyRichterGenerator = key => augment(
+const paddyRichterGenerator = (key) => augment(
   {
     halfBlowBend: [null, null, null, null, null, null, null, 3, 6, 11],
     wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
@@ -101,7 +101,7 @@ const paddyRichterGenerator = key => augment(
   SCALE_ACCIDENTAL[key],
 );
 
-const melodyMakerGenerator = key => augment(
+const melodyMakerGenerator = (key) => augment(
   {
     halfBlowBend: [null, null, null, null, null, null, null, 3, null, 11],
     wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
@@ -115,7 +115,7 @@ const melodyMakerGenerator = key => augment(
   SCALE_ACCIDENTAL[key],
 );
 
-const harmonicMinorGenerator = key => augment(
+const harmonicMinorGenerator = (key) => augment(
   {
     halfBlowBend: [null, null, null, null, null, null, null, null, 6, 11],
     wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],
@@ -129,7 +129,7 @@ const harmonicMinorGenerator = key => augment(
   SCALE_ACCIDENTAL[key],
 );
 
-const naturalMinorGenerator = key => augment(
+const naturalMinorGenerator = (key) => augment(
   {
     halfBlowBend: [null, null, null, null, null, null, 11, null, 6, 11],
     wholeBlowBend: [null, null, null, null, null, null, null, null, null, 10],

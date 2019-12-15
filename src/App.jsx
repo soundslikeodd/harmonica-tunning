@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Description from './Description';
@@ -9,7 +9,7 @@ import {
 } from './tunningGenerator';
 import './app.scss';
 
-const cleanParam = param => param.toLowerCase().replace(/ /g, '-').replace(/#/g, 'flat');
+const cleanParam = (param) => param.toLowerCase().replace(/ /g, '-').replace(/#/g, 'flat');
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class App extends Component {
     const cleanedKey = key.replace('flat', '#');
     const finalKey = ALL_NOTES.includes(cleanedKey) ? cleanedKey : 'c';
     const selectedKey = { value: finalKey, label: labelizeNote(finalKey) };
-    const cleanedTunning = tunning.includes('-') ? tunning.split('-').map(i => `${i.charAt(0).toUpperCase()}${i.substring(1)}`).join(' ') : `${tunning.charAt(0).toUpperCase()}${tunning.substring(1)}`;
+    const cleanedTunning = tunning.includes('-') ? tunning.split('-').map((i) => `${i.charAt(0).toUpperCase()}${i.substring(1)}`).join(' ') : `${tunning.charAt(0).toUpperCase()}${tunning.substring(1)}`;
     const finalTunning = Object.keys(TUNNING_TO_GENERATOR).includes(cleanedTunning) ? cleanedTunning : 'Richter';
     const selectedTunning = { value: finalTunning, label: finalTunning };
     this.state = {
@@ -44,7 +44,7 @@ class App extends Component {
       paramUpdater,
     } = this.props;
     return (
-      <Fragment>
+      <>
         <main id="app">
           <header id="app--hdr">
             <h2>
@@ -62,7 +62,7 @@ class App extends Component {
                     this.setState({ selectedKey: n });
                     paramUpdater({ key: cleanParam(n.value) });
                   }}
-                  options={ALL_NOTES.map(n => ({ value: n, label: labelizeNote(n) }))}
+                  options={ALL_NOTES.map((n) => ({ value: n, label: labelizeNote(n) }))}
                 />
               </label>
               <label>
@@ -74,7 +74,7 @@ class App extends Component {
                     this.setState({ selectedTunning: n });
                     paramUpdater({ tunning: cleanParam(n.value) });
                   }}
-                  options={Object.keys(TUNNING_TO_GENERATOR).map(n => ({ value: n, label: n }))}
+                  options={Object.keys(TUNNING_TO_GENERATOR).map((n) => ({ value: n, label: n }))}
                 />
               </label>
             </aside>
@@ -116,7 +116,7 @@ class App extends Component {
                     &#110;&#116;&#097;&#099;&#116;&#046;&#099;&#111;&#109;
           </div>
         </footer>
-      </Fragment>
+      </>
     );
   }
 }

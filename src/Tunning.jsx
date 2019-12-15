@@ -70,7 +70,7 @@ class Tunning extends PureComponent {
         </div>
         <div className="tng-row">
           <mark className="legend" />
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
             <div
               key={`hole-${n}`}
               className="tng--hl tng--hl-nb"
@@ -168,7 +168,30 @@ class Tunning extends PureComponent {
 }
 
 Tunning.propTypes = {
-  notes: PropTypes.shape({}).isRequired,
+  notes: PropTypes.shape({
+    wholeBlowBend: PropTypes.shape({
+      map: PropTypes.func,
+    }),
+    halfBlowBend: PropTypes.shape({
+      map: PropTypes.func,
+    }),
+    blow: PropTypes.shape({
+      map: PropTypes.func,
+    }),
+    draw: PropTypes.shape({
+      map: PropTypes.func,
+    }),
+    halfDrawBend: PropTypes.shape({
+      map: PropTypes.func,
+    }),
+    wholeDrawBend: PropTypes.shape({
+      map: PropTypes.func,
+    }),
+    wholeHalfDrawBend: PropTypes.shape({
+      map: PropTypes.func,
+    }),
+
+  }).isRequired,
 };
 
 export default Tunning;
